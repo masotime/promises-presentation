@@ -20,6 +20,10 @@
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+		<style type="text/css">
+			em { color: #f00; }
+		</style>
+
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
@@ -40,7 +44,7 @@
 					<h1>Promises in <br/>Javascript</h1>
 					<h3>An alternative approach to handling asynchronous function calls</h3>
 					<p>
-						<small>Made using <a href="http://hakim.se">reveal.js</a></small>
+						<small>by Benjamin Goh, made using <a href="http://hakim.se">reveal.js</a></small>
 					</p>
 				</section>
 
@@ -81,8 +85,9 @@ console.log('World');
 
 					<section>
 						<h2>Node.JS Conventions</h2>
-						<h3>Async function</h3>
-						<pre><code data-trim contenteditable>
+						<div class="fragment">
+							<h3>Async function</h3>
+							<pre><code data-trim contenteditable>
 function async(...args, callback) { // LAST ARG MUST BE CALLBACK
 	// synchronous code
 	if (success) {
@@ -91,9 +96,11 @@ function async(...args, callback) { // LAST ARG MUST BE CALLBACK
 		callback(err, result); // if any
 	}
 }
-						</code></pre>
-						<h3>Callback handler</h3>
-						<pre><code data-trim contenteditable>
+							</code></pre>
+						</div>
+						<div class="fragment">
+							<h3>Callback handler</h3>
+							<pre><code data-trim contenteditable>
 function callback(error, result) { // FIRST ARG MUST BE ERROR
 	if (error) {
 		// handle error
@@ -101,50 +108,55 @@ function callback(error, result) { // FIRST ARG MUST BE ERROR
 		// so something with the result
 	}
 }
-						</code></pre>
+							</code></pre>
+						</div>
 					</section>
 				</section>
 
 				<section>
 					<h2>On the side - array processing</h2>
-					<h3><code>map</code></h3>
-					<p>Map each array element through a function, return a new array</p>
-					<pre><code data-trim contenteditable>
+					<div class="fragment">
+						<h3><code>map</code></h3>
+						<p>Map each array element through a function, return a new array</p>
+						<pre><code data-trim contenteditable>
 var numbers = [1,2,3,4,5];
 var inc = function(x) { return x+1 };
 var newNumbers = numbers.map(inc); // newNumbers = [2,3,4,5,6]
-					</code></pre>
-					<h3><code>reduce</code></h3>
-					<p>Go through each array element, reduce it to a single result</p>
-					<pre><code data-trim contenteditable>
+						</code></pre>
+					</div>
+					<div class="fragment">
+						<h3><code>reduce</code></h3>
+						<p>Go through each array element, reduce it to a single result</p>
+						<pre><code data-trim contenteditable>
 var adder = function(sum, current) { return sum + current };
 var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 10
-					</code></pre>
+						</code></pre>
+					</div>
 				</section>
 
 				<section>
 					<h2>Parallel Example</h2>
 					<ul>
-						<li>Finding the sizes of 3 files in parallel</li>
-						<li>Straightforward as the requirements are not complicated</li>
+						<li class="fragment">Finding the sizes of 3 files in parallel</li>
+						<li class="fragment">Straightforward as the requirements are not complicated</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>Series Example</h2>
 					<ul>
-						<li>Joining the contents of 3 files</li>
-						<li>More difficult - order is important</li>
-						<li>Previous example - find the size of all 3 files?</li>
+						<li class="fragment">Joining the contents of 3 files</li>
+						<li class="fragment">More difficult - order is important</li>
+						<li class="fragment">Previous example - find the size of all 3 files?</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>Async to the rescue</h2>
 					<ul>
-						<li>Async provides flow control utilities.</li>
-						<li>Code is compact and readable</li>
-						<li>Good for streamlining simple asynchronous functions.</li>
+						<li class="fragment">Async provides flow control utilities.</li>
+						<li class="fragment">Code is compact and readable</li>
+						<li class="fragment">Good for streamlining simple asynchronous functions.</li>
 					</ul>
 				</section>
 
@@ -152,8 +164,8 @@ var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 10
 					<h2>More complex scenarios</h2>
 					<small>Source: <a href="https://blog.jcoglan.com/2013/03/30/callbacks-are-imperative-promises-are-functional-nodes-biggest-missed-opportunity/">Promises are Node's Biggest Missed Opportunity</a></small>
 					<ul>			
-						<li>Using the result of a async function in more than one place</li>
-						<li>You can eventually form a "best" answer, but it takes some effort to get there.</li>
+						<li class="fragment">Using the result of a async function in more than one place</li>
+						<li class="fragment">You can eventually form a "best" answer, but it takes some effort to get there.</li>
 					</ul>
 				</section>
 
@@ -214,8 +226,8 @@ function doPerformanceReview(callback) {
 
 				<section>
 					<h2>Promise Frameworks</h2>
-					<p>Promises in Javascript usually implement what is known as the <a target="_blank" href="http://promises-aplus.github.io/promises-spec/">Promises/A+ standard</a></p>
-					<p><a href="https://github.com/kriskowal/q" target="_blank">Q</a> is the most popular framework, but there are many others, like <a href="https://github.com/petkaantonov/bluebird" target="_blank">Bluebird</a>, <a href="https://github.com/tildeio/rsvp.js">rsvp</a>, etc.</p>
+					<p class="fragment">Promises in Javascript usually implement what is known as the <a target="_blank" href="http://promises-aplus.github.io/promises-spec/">Promises/A+ standard</a></p>
+					<p class="fragment"><a href="https://github.com/kriskowal/q" target="_blank">Q</a> is the most popular framework, but there are many others, like <a href="https://github.com/petkaantonov/bluebird" target="_blank">Bluebird</a>, <a href="https://github.com/tildeio/rsvp.js">rsvp</a>, etc.</p>
 				</section>
 
 				<section>
@@ -259,6 +271,22 @@ try {
 					<h2>The difference is mainly in the way you think</h2>
 					<p><code>async</code> is good for flow control, but it doesn&rsquo;t help you think in terms of <em>dependencies</em>.</p>
 					<p>Let's try to model a real world example using Q.</p>
+				</section>
+
+				<section>
+					<h2>Pros</h2>
+					<ul style="margin-bottom: 2em;">
+						<li class="fragment">Allow you to think in terms of <em>dependencies</em></li>
+						<li class="fragment">Automatically optimized based on dependencies</li>
+						<li class="fragment">Easier error handling</li>
+					</ul>
+					<h2 class="fragment">Cons</h2>
+					<ul style="margin-bottom: 2em;">
+						<li class="fragment">No advantage in terms of code length versus async</li>
+						<li class="fragment">Callbacks are still the gold standard</li>
+						<li class="fragment">Syntax is hard to get used to</li>
+					</ul>
+					<p><span class="fragment">My recommendation? </span><span class="fragment">Use it when you have data from <em>multiple sources</em> that must be <em>combined in different ways</em>.</span></p>
 				</section>
 
 				<section>

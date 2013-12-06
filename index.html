@@ -44,7 +44,7 @@
 					<h1>Promises in <br/>Javascript</h1>
 					<h3>An alternative approach to handling asynchronous function calls</h3>
 					<p>
-						<small>by Benjamin Goh, made using <a href="http://hakim.se">reveal.js</a></small>
+						<small>by Benjamin Goh, made using <a href="http://lab.hakim.se/reveal-js/">reveal.js</a></small>
 					</p>
 				</section>
 
@@ -129,7 +129,7 @@ var newNumbers = numbers.map(inc); // newNumbers = [2,3,4,5,6]
 						<p>Go through each array element, reduce it to a single result</p>
 						<pre><code data-trim contenteditable>
 var adder = function(sum, current) { return sum + current };
-var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 10
+var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 15
 						</code></pre>
 					</div>
 				</section>
@@ -234,10 +234,6 @@ function doPerformanceReview(callback) {
 					<section>
 						<h1>Rewriting the fs.stat example using Q / Promises</h1>
 					</section>
-					<section>
-						<h2>Simple UIE workflow</h2>
-						<img src="images/sample-flow.jpg" style="max-height: 13em" />
-					</section>
 				</section>
 
 
@@ -275,9 +271,16 @@ try {
 				</section>
 
 				<section>
-					<h2>The difference is mainly in the way you think</h2>
-					<p><code>async</code> is good for flow control, but it doesn&rsquo;t help you think in terms of <em>dependencies</em>.</p>
-					<p>Let's try to model a real world example using Q.</p>
+					<section>
+						<h2>The difference is mainly in the way you think</h2>
+						<p><code>async</code> is good for flow control, but it doesn&rsquo;t help you think in terms of <em>dependencies</em>.</p>
+						<p>Let's try to model a real world example using Q.</p>
+					</section>
+
+					<section>
+						<h2>Simple UIE workflow</h2>
+						<img src="images/sample-flow.jpg" style="max-height: 13em" />
+					</section>
 				</section>
 
 				<section>

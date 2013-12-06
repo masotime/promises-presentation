@@ -57,6 +57,7 @@ swags.then(function(swags) {
 });
 
 // now we look at coding
+/*
 var RajDoCODE = promiseFunctionFactory('Raj', 4, 'DEV WORK', 'stage2dev090');
 var BenDoESTIMATE = promiseFunctionFactory('Ben', 2, 'CONTENT ESTIMATE', '1000 words');
 var BenDoCODE = promiseFunctionFactory('Ben', 3, 'UIE WORK', '<Choose><Choice when="I am sick of XML"><Fragment......>');
@@ -68,3 +69,4 @@ Q.all([stage, contentEstimate]).then(BenDoCODE).then(function(code) {
 }, function(err) {
 	console.error('Coding could not complete', err);
 });
+*/

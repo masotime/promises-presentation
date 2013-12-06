@@ -2,7 +2,7 @@
 var fs = require('fs'),
 	async = require('async'),
 	files = ['data/data1', 'data/datxxa2', 'data/data3'];
-	// files = ['data/data1', 'data/data2', 'data/data3'];
+	//files = ['data/data1', 'data/data2', 'data/data3'];
 
 var useThirdFileSize = function(size) {
 	console.log('the third files size is ', size);
@@ -19,7 +19,8 @@ var useFileStats = function(stats) {
 async.map(files, fs.stat, function(err, stats) {
 	if (err) {
 		console.error(err);
+	} else {
+		useThirdFileSize(stats[2].size);
+		useFileStats(stats);
 	}
-	useThirdFileSize(stats[2].size);
-	useFileStats(stats);
 });

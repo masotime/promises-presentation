@@ -3,8 +3,8 @@
 
 var fs = require('fs'),
 	async = require('async'),
-	files = ['data/data1', 'data/datxxa2', 'data/data3'];
-	//files = ['data/data1', 'data/data2', 'data/data3'];
+	files = ['data/data1', 'data/data2', 'data/data3'];
+	// files = ['data/data1', 'data/datxxa2', 'data/data3'];
 
  function useThirdFileSize(size) {
 	console.log('the third files size is ', size);

@@ -41,8 +41,8 @@ var BenDoSWAG = promiseFunctionFactory('Ben', 3, 'UIE SWAG', '6 days', true);
 var pLianyDoSWAG = Q.denodeify(LianyDoSWAG);
 
 // now we have our promises (instead of values)
-var AN1Swag = pLianyDoSWAG('AN 1');
-var AN2Swag = BenDoSWAG('AN 2');
+var AN1Swag = pLianyDoSWAG('Page 1');
+var AN2Swag = BenDoSWAG('Page 2');
 
 var swags = Q.all([AN1Swag, AN2Swag])
 	.then(undefined /* all is good */, function(err) {
@@ -53,12 +53,12 @@ var swags = Q.all([AN1Swag, AN2Swag])
 
 swags.then(function(swags) {
 	swags.forEach(function(swag) {
-		console.log(swag.work,'will take',swag.result);
+		console.log(swag.data,'will take',swag.result);
 	});
 });
 
 // now we look at coding
-/*
+//*
 var RajDoCODE = promiseFunctionFactory('Raj', 4, 'DEV WORK', 'stage2dev090');
 var BenDoESTIMATE = promiseFunctionFactory('Ben', 2, 'CONTENT ESTIMATE', '1000 words');
 var BenDoCODE = promiseFunctionFactory('Ben', 3, 'UIE WORK', '<Choose><Choice when="I am sick of XML"><Fragment......>');

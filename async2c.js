@@ -3,8 +3,8 @@
 
 var fs = require('fs'),
 	async = require('async'),
-	files = ['data/data1', 'data/datxxa2', 'data/data3'];
-	// files = ['data/data1', 'data/data2', 'data/data3'];
+	files = ['data/data1', 'data/data2', 'data/data3'];
+	// files = ['data/data1', 'data/datxxa2', 'data/data3'];
 
 function useThirdFileSize(size) {
 	console.log('the third files size is ', size);
@@ -26,7 +26,7 @@ async.parallel([
 			if (stat) {
 				useThirdFileSize(stat.size);
 			}
-			callback(error, stat);
+			callback(error, [stat]);
 		});
 	},
 	// this deals with the rest
@@ -36,5 +36,9 @@ async.parallel([
 	}
 ], function(err, results) {
 	// this joins the results together
-	useFileStats([results[0]].concat(results[1]));
+	if (err) {
+		console.log(err);
+	} else {
+		useFileStats(results[1].concat(results[0]));
+	}
 });

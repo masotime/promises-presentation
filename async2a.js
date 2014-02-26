@@ -16,7 +16,7 @@ function useFileStats(stats) {
 	});
 }
 
-// first approach - naive - files[0] is stat'd TWICE
+// first approach - naive - files[2] is stat'd TWICE
 async.map(files, fs.stat, function(err, stats) {
 	useFileStats(stats);
 });

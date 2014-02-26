@@ -9,6 +9,21 @@ function* simpleGenerator() {
 	return 'done';
 }
 
+// test is like an iterator
+var test = simpleGenerator(), step;
+
+/*
+console.log('going to begin simpleGenerator().next()');
+do {
+	step = test.next();
+	console.log('executed simpleGenerator().next()');
+	console.log(step.value)
+} while (!step.done);
+/* */
+
+//*
+var test2 = sendGenerator(), initialValue, i=1;
+
 function* sendGenerator() {
 	console.log('sendGenerator started');
 	var x,y,z;
@@ -18,22 +33,12 @@ function* sendGenerator() {
 	return [x,y,z];
 }
 
-// test is like an iterator
-var test = simpleGenerator(), test2 = sendGenerator(), step;
-
-//*
-console.log('going to begin simpleGenerator().next()');
-do {
-	step = test.next();
-	console.log('executed simpleGenerator().next()');
-	console.log(step.value)
-} while (!step.done);
-/* */
-
-/*
 console.log('going to begin sendGenerator().next()');
+initialValue = test2.next();
+console.log('initialValue =',initialValue.value);
 do {
-	step = test2.next(Math.random());
+	step = test2.next(i);
+	i+=1;
 	console.log('executed sendGenerator().next(Math.random())');
 	console.log(step.value);
 } while (!step.done);

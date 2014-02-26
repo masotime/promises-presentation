@@ -70,7 +70,7 @@ console.log('world'); // this will never be reached
 				</section>
 
 				<section>
-					<h2>Callbacks</h2>
+					<h2>Callback Mechanic</h2>
 					<p class="fragment">Events versus threads - <code>onclick</code>, <code>onmouseover</code></p>
 					<pre class="fragment"><code data-trim contenteditable>
 document.getElementById('mybutton').onclick = function(e) {
@@ -160,17 +160,16 @@ var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 15
 					<h2>Series Example</h2>
 					<ul>
 						<li class="fragment">Joining the contents of 3 files</li>
-						<li class="fragment">More difficult - order is important</li>
-						<li class="fragment">Previous example - find the size of all 3 files? ...</li>
+						<li class="fragment">More difficult - order is important...</li>
 					</ul>
 				</section>
 
 				<section>
-					<h2>Async to the rescue</h2>
+					<h2>caolan&rsquo;s <code>async</code> to the rescue</h2>
 					<ul>
-						<li class="fragment">Async provides flow control utilities.</li>
-						<li class="fragment">Code is compact and readable</li>
-						<li class="fragment">Good for streamlining simple asynchronous functions...</li>
+						<li class="fragment"><code>async</code> provides flow control utilities.</li>
+						<li class="fragment">Code becomes compact and readable</li>
+						<li class="fragment">Good for streamlining simple asynchronous requirements...</li>
 					</ul>
 				</section>
 
@@ -178,7 +177,7 @@ var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 15
 					<h2>More complex scenarios</h2>
 					<small>Source: <a href="https://blog.jcoglan.com/2013/03/30/callbacks-are-imperative-promises-are-functional-nodes-biggest-missed-opportunity/">Promises are Node's Biggest Missed Opportunity</a></small>
 					<ul>			
-						<li class="fragment">Using the result of a async function in more than one place</li>
+						<li class="fragment">Using the result of a async function in more than one place...</li>
 						<li class="fragment">You can eventually form a "best" answer, but it takes some effort to get there...</li>
 					</ul>
 				</section>
@@ -188,21 +187,22 @@ var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 15
 					<h1>&ldquo;synchronously&rdquo;?</h1>
 					<pre><code data-trim contenteditable>
 var files = ['data/data1', 'data/data2', 'data/data3'],
-    
+    filestats;
+  
 try {
-    useFileStats(files.map(fs.stat));
+    filestats = files.map(fs.stat);
+    useFileStats(filestats);
 } catch (e) {
     console.error(e);
 }
 
-useThirdFileSize(fs.stat(files[2]).size);
+useThirdFileSize(filestats[2].size);
 					</code></pre>
 				</section>
 
 				<section>
 					<h2>Introducing Promises</h2>
 					<a href="http://promises-aplus.github.io/promises-spec/"><img src="images/logo.svg"></a>
-					<small>Disclaimer: I made no promises it would allow you to code &lsquo;synchronously&rsquo;</small>
 				</section>
 
 				<section>

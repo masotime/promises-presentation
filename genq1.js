@@ -3,8 +3,8 @@
 
 var fs = require('fs'),
 	Q = require('q'),
-	 // files = ['data/data1', 'data/datxxa2', 'data/data3'];
-	files = ['data/data1', 'data/data2', 'data/data3'],
+	// files = ['data/data1', 'data/data2', 'data/data3'],
+	files = ['data/data1', 'data/datxxa2', 'data/data3'],
 	fs_stat, statPromises;
 
 function useThirdFileSize(size) {

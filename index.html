@@ -49,9 +49,18 @@
 				</section>
 
 				<section>
-					<h2>Surprise!</h2>
-					<p>Javascript is actually <i>synchronous</i>. It's &ldquo;single threaded&rdquo;.</p>
-					<p><small>You write from A-Z, and expect execution from A-Z</small></p>
+					<h2>Who am I?</h2>
+					<img src="images/mugshot.jpg" style="width: 7em"/>
+					<p style="font-size: 0.8em; text-transform: uppercase; margin-top: -.5em; font-weight: bold">Benjamin Goh</p>
+					<ul style="margin-top: .5em">
+						<li>From Singapore - UIE-SDC</li>
+						<li>Working with Kraken on Risk Projects</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Javascript is <span style="color: red; letter-spacing: 0.1em; margin-left: .1em">synchronous</span>.</h2>
+					<p>You write from A-Z, and expect execution from A-Z</p>
 					<pre><code data-trim contenteditable>
 console.log('Hello');
 while(true);
@@ -60,10 +69,15 @@ console.log('world'); // this will never be reached
 				</section>
 
 				<section>
-					<section>
-						<h2>How do we make it asynchronous?</h2>
-						<p>Through the <strong>event loop</strong>, Javascript makes use of callbacks to remove the blocking aspect of synchronous code.</p>
-						<pre><code data-trim contenteditable>
+					<h2>Callbacks</h2>
+					<p class="fragment">Events versus threads - <code>onclick</code>, <code>onmouseover</code></p>
+					<pre class="fragment"><code data-trim contenteditable>
+document.getElementById('mybutton').onclick = function(e) {
+	 alert('hello world'); 
+};
+					</code></pre>
+					<p class="fragment">Pass a function as an argument</p>
+						<pre class="fragment"><code data-trim contenteditable>
 function nonBlocking(arg, callback) {
   setTimeout(function() { // "spawn thread"
     try {
@@ -81,9 +95,9 @@ nonBlocking('pineapple.txt', function(result) {
 }); // this doesn't block
 console.log('World');
 						</code></pre>
-					</section>
+				</section>
 
-					<section>
+				<section>
 						<h2>Node.JS Conventions</h2>
 						<div class="fragment">
 							<h3>Async function</h3>
@@ -110,7 +124,6 @@ function callback(error, result) { // FIRST ARG MUST BE ERROR
 }
 							</code></pre>
 						</div>
-					</section>
 				</section>
 
 				<section>
@@ -138,7 +151,7 @@ var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 15
 					<h2>Parallel Example</h2>
 					<ul>
 						<li class="fragment">Finding the sizes of 3 files in parallel</li>
-						<li class="fragment">Straightforward as the requirements are not complicated</li>
+						<li class="fragment">Straightforward as the requirements are not complicated...</li>
 					</ul>
 				</section>
 
@@ -147,7 +160,7 @@ var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 15
 					<ul>
 						<li class="fragment">Joining the contents of 3 files</li>
 						<li class="fragment">More difficult - order is important</li>
-						<li class="fragment">Previous example - find the size of all 3 files?</li>
+						<li class="fragment">Previous example - find the size of all 3 files? ...</li>
 					</ul>
 				</section>
 
@@ -156,7 +169,7 @@ var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 15
 					<ul>
 						<li class="fragment">Async provides flow control utilities.</li>
 						<li class="fragment">Code is compact and readable</li>
-						<li class="fragment">Good for streamlining simple asynchronous functions.</li>
+						<li class="fragment">Good for streamlining simple asynchronous functions...</li>
 					</ul>
 				</section>
 
@@ -165,22 +178,23 @@ var sum = numbers.reduce(adder); // sum = 1 + 2 + 3 + 4 + 5 = 15
 					<small>Source: <a href="https://blog.jcoglan.com/2013/03/30/callbacks-are-imperative-promises-are-functional-nodes-biggest-missed-opportunity/">Promises are Node's Biggest Missed Opportunity</a></small>
 					<ul>			
 						<li class="fragment">Using the result of a async function in more than one place</li>
-						<li class="fragment">You can eventually form a "best" answer, but it takes some effort to get there.</li>
+						<li class="fragment">You can eventually form a "best" answer, but it takes some effort to get there...</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>What if you could code<h2>
-					<h1>&lsquo;synchronously?&rsquo;</h1>
+					<h1>&ldquo;synchronously&rdquo;?</h1>
 					<pre><code data-trim contenteditable>
+var files = ['data/data1', 'data/data2', 'data/data3'],
+    
 try {
-	var files = ['data/data1', 'data/data2', 'data/data3'];
-	var filestats = files.map(fs.stat);
-	useThirdFileSize(filestats[2].size);
-	useFileStats(filestats);
+    useFileStats(files.map(fs.stat));
 } catch (e) {
-	console.error(e);
+    console.error(e);
 }
+
+useThirdFileSize(fs.stat(files[2]).size);
 					</code></pre>
 				</section>
 
@@ -249,23 +263,24 @@ function doPerformanceReview(callback) {
 var statPromises = files.map(function(file) { return fs_stat(file); }); // array of promises
 
 Q.all(statPromises).then(useFileStats)
-	.done(undefined, function(err) {
-		console.error('problem trying to stat all files', err); // localized error handling
-	});
+    .done(undefined, function(err) {
+        console.error('problem trying to stat all files', err); // localized error handling
+    });
 
 statPromises[2].get('stat')
-	.then(useThirdFileSize).done();							
+    .then(useThirdFileSize).done();							
 						</code></pre>						
 						<h2>Ideal</h2>
 						<pre><code data-trim contenteditable>
+var files = ['data/data1', 'data/data2', 'data/data3'],
+    
 try {
-	var files = ['data/data1', 'data/data2', 'data/data3'];
-	var filestats = files.map(fs.stat);
-	useThirdFileSize(filestats[2].size);
-	useFileStats(filestats);
+    useFileStats(files.map(fs.stat));
 } catch (e) {
-	console.error(e);
+    console.error(e);
 }
+
+useThirdFileSize(fs.stat(files[2]).size);
 						</code></pre>
 					</section>
 				</section>

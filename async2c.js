@@ -4,11 +4,11 @@ var fs = require('fs'),
 	files = ['data/data1', 'data/datxxa2', 'data/data3'];
 	// files = ['data/data1', 'data/data2', 'data/data3'];
 
-var useThirdFileSize = function(size) {
+function useThirdFileSize(size) {
 	console.log('the third files size is ', size);
 }
 
-var useFileStats = function(stats) {
+function useFileStats(stats) {
 	console.log('stats for files');
 	stats.forEach(function(stat, index) {
 		console.log(index,':',JSON.stringify(stat));

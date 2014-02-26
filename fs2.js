@@ -6,7 +6,7 @@ var fs = require('fs'),
 	readFile = fs.readFile, // shortcut
 	contents = '';
 
-// must be in series because order matters
+// in series, join content in order
 // "callback hell" - CPS or Continuous Passing Style
 readFile(files[0], 'utf8', function(err, result) {
 	if (err) { 

@@ -1,5 +1,6 @@
 // fs example 2
 // read three files in order and join the contents of the files
+'use strict';
 
 var fs = require('fs'),
 	files = ['data/data1', 'data/data2', 'data/data3'],

@@ -1,21 +1,22 @@
 // Emulating a real-life flow
+'use strict';
 var Q = require('q');
 
-var callbackFunctionFactory = function(name, timeout, work, result, throwsError) {
+function callbackFunctionFactory(name, timeout, work, result, throwsError) {
 	return function(data, callback) {
 		setTimeout(function() {
 			if (throwsError) {
 				var err = {name: 'Worker Problem', message: name + " can't finish " + work + ' on '+data};
 				callback(err, null);
 			} else {
-				console.log(name,'finishes work on',work,'using',JSON.stringify(data));
+				console.log(name,'finishes work on',work,'using',JSON.stringify(data),'\n');
 				callback(null, {work: work, data: data, result: result});
 			}
 		}, timeout * 1000);
 	}
 };
 
-var promiseFunctionFactory = function(name, timeout, work, result, throwsError) {
+function promiseFunctionFactory(name, timeout, work, result, throwsError) {
 	return function(data) {
 		var deferred = Q.defer();
 		setTimeout(function() {
@@ -23,7 +24,7 @@ var promiseFunctionFactory = function(name, timeout, work, result, throwsError) 
 				var err = {name: 'Worker Problem', message: name + " can't finish " + work + ' on ' +data };
 				deferred.reject(err);
 			} else {
-				console.log(name,'finishes work on',work,'using',JSON.stringify(data));
+				console.log(name,'finishes work on',work,'using',JSON.stringify(data),'\n');
 				deferred.resolve({work: work, data:data, result: result});
 			}
 		}, timeout * 1000);
@@ -33,8 +34,8 @@ var promiseFunctionFactory = function(name, timeout, work, result, throwsError) 
 }
 
 // these are our functions
-var LianyDoSWAG = callbackFunctionFactory('Liany', 4, 'UIE SWAG', 3);
-var BenDoSWAG = promiseFunctionFactory('Ben', 3, 'UIE SWAG', 6);
+var LianyDoSWAG = callbackFunctionFactory('Liany', 4, 'UIE SWAG', '3 days');
+var BenDoSWAG = promiseFunctionFactory('Ben', 3, 'UIE SWAG', '6 days', true);
 
 // because this is in callback-style, we have to convert
 var pLianyDoSWAG = Q.denodeify(LianyDoSWAG);
@@ -52,7 +53,7 @@ var swags = Q.all([AN1Swag, AN2Swag])
 
 swags.then(function(swags) {
 	swags.forEach(function(swag) {
-		console.log(swag.work +' will take '+ swag.result+' points');
+		console.log(swag.work,'will take',swag.result);
 	});
 });
 
@@ -69,4 +70,4 @@ Q.all([stage, contentEstimate]).then(BenDoCODE).then(function(code) {
 }, function(err) {
 	console.error('Coding could not complete', err);
 });
-*/
+/* */

@@ -1,14 +1,17 @@
 // Rewrite with Q
+'use strict';
+
 var fs = require('fs'),
 	Q = require('q'),
 	// files = ['data/data1', 'data/datxxa2', 'data/data3'];
-	files = ['data/data1', 'data/data2', 'data/data3'];
+	files = ['data/data1', 'data/data2', 'data/data3'],
+	fs_stat, statPromises;
 
-var useThirdFileSize = function(size) {
+function useThirdFileSize(size) {
 	console.log('the third files size is ', size);
 }
 
-var useFileStats = function(stats) {
+function useFileStats(stats) {
 	console.log('stats for files');
 	stats.forEach(function(stat, index) {
 		console.log(index,':',JSON.stringify(stat));
@@ -16,9 +19,9 @@ var useFileStats = function(stats) {
 }
 
 // this converts a "callback function" into a "promise function" that returns a promise
-var fs_stat = Q.denodeify(fs.stat); 
+fs_stat = Q.denodeify(fs.stat); 
 
-var statPromises = files.map(function(file) {
+statPromises = files.map(function(file) {
 	return fs_stat(file);
 }); // array of promises
 

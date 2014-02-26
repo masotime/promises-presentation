@@ -1,4 +1,6 @@
 // What if I want to re-use a result elsewhere?
+'use strict';
+
 var fs = require('fs'),
 	async = require('async'),
 	files = ['data/data1', 'data/data2', 'data/data3'];

@@ -1,5 +1,7 @@
 // fs example 1
 // fs.stat returns an object with a "size" property
+'use strict';
+
 var fs = require('fs'),
 	files = ['data/data1', 'data/data2', 'data/data3'];
 

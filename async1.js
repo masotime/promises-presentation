@@ -1,5 +1,7 @@
 // async 1
 // async to the rescue
+'use strict';
+
 var async = require('async'),
 	fs = require('fs'),
 	files = ['data/data1', 'data/data2', 'data/data3'];

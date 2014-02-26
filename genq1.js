@@ -1,4 +1,6 @@
 // Rewrite with Q
+'use strict';
+
 var fs = require('fs'),
 	Q = require('q'),
 	 // files = ['data/data1', 'data/datxxa2', 'data/data3'];
